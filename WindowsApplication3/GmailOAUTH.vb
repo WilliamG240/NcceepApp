@@ -4,15 +4,8 @@ Imports System.IO
 Imports EASendMail
 
 Public Class GmailOAUTH
-    ' ===============================================================================================================
-    ' The client_id and client_secret is created for test purposes, please create your clientid
-    ' 1. Please create your project at https://console.developers.google.com/project;
-    ' 2. Create a credentials at APIs & Auth -> Credentials -> Add Credentials -> OAuth 2.0 Client ID -> click Other
-    ' 3. Enable Google+ API in APIs & Auth -> APIs->Google+ API;
-    ' 4. Finally use your client_id and client_secret to replace the following values;
-    ' Any problem, please kindly contact support@emailarchitect.net
-    ' ===============================================================================================================
 
+#Region "Public Variables"
     Private m_client_id As String = "931912589092-94b9hv9afn7i1ihtc31rqt57qnbh44kl.apps.googleusercontent.com"
     Private m_client_secret As String = "a2Yc4j6HHuSqoBmTk0gdllTZ"
 
@@ -24,6 +17,8 @@ Public Class GmailOAUTH
     Public m_access_token As String = ""
     Public m_refresh_token As String = ""
     Public m_user As String = ""
+
+#End Region
 
     Private Sub GmailOAUTH_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 

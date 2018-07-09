@@ -15,14 +15,11 @@ Public Class frmMainPage
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If System.IO.File.Exists("C:\Users\William\Dropbox\Participants_list.csv") = True Then
             For Each line As String In System.IO.File.ReadAllLines("C:\Users\William\Dropbox\Participants_list.csv")
-
                 If Not line.StartsWith("2018") And line.Contains("Name") = False Then
-                    DataGridView1.Rows.Add(line.Split(","))
+                    dtagrdContact.Rows.Add(line.Split(","))
                 End If
             Next
-
         End If
-
     End Sub
 
     Private Sub Form3_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
@@ -30,16 +27,14 @@ Public Class frmMainPage
         date1 = System.DateTime.Now.ToString("yyyy/MM")
         If System.IO.File.Exists("C:\Users\William\Dropbox\Participants_list.csv") = True Then
             For Each line As String In System.IO.File.ReadAllLines("C:\Users\William\Dropbox\Participants_list.csv")
-                If line.StartsWith("2018") Then
-                    If Not line.Equals(date1) Then
-                        MsgBox("Please reconfirm with the shown businesses if they would like to participate in Sokoni again")
-                    End If
-                End If
+                'If line.StartsWith("2018") Then
+                '    If Not line.Equals(date1) Then
+                '        MsgBox("Please reconfirm with the shown businesses if they would like to participate in Sokoni again")
+                '    End If
+                'End If
             Next
-
             My.Computer.FileSystem.DeleteFile("C:\Users\William\Dropbox\Participants_list.csv")
         End If
-
 
         'Reads the data in csv file and converts it to show on chart on form
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\Users\William\Dropbox\Participants_Date.csv")
@@ -51,10 +46,9 @@ Public Class frmMainPage
             While Not MyReader.EndOfData
                 Try
                     currentRow = MyReader.ReadFields()
-
                     Dim D As String = currentRow(0)
-                    Try
 
+                    Try
                         Dim Y As Double = CDbl(currentRow(1))
                         Chart1.Series(0).Points.AddY(Y)
                         Chart1.Series(0).Points(CurrentPoint).AxisLabel = D
@@ -67,7 +61,6 @@ Public Class frmMainPage
                             MsgBox("Item " & currentRow(1) & " is invalid.  Skipping")
                         End If
                     End Try
-
                 Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
                     If CurrentPoint <> 0 Then
                         MsgBox("Line " & ex.Message & " is invalid.  Skipping")
@@ -83,20 +76,19 @@ Public Class frmMainPage
         Dim csvP As String = String.Empty
 
         'Add the Header row for CSV file.
-        For Each column As DataGridViewColumn In DataGridView1.Columns
+        For Each column As DataGridViewColumn In dtagrdContact.Columns
             csv += column.HeaderText & ","c
         Next
 
         'Add new line.
         csv += vbCr & vbLf
-        Dim count As Integer = 0
         'Adding the Rows
-        For Each row As DataGridViewRow In DataGridView1.Rows
+        For Each row As DataGridViewRow In dtagrdContact.Rows
             For Each cell As DataGridViewCell In row.Cells
                 'Add the Data rows.
                 csv += cell.Value.ToString().Replace(",", ";") & ","c
             Next
-            count += 1
+
             'Add new line.
             csv += vbCr & vbLf
         Next
@@ -112,12 +104,10 @@ Public Class frmMainPage
                     csvP += line + vbCr & vbLf
                 End If
             Next
-
             My.Computer.FileSystem.DeleteFile("C:\Users\William\Dropbox\Participants_Date.csv")
         End If
 
         csvP += date1 + "," + amount_total_curr_part.ToString()
-
         File.WriteAllText(folderPath & "Participants_Date.csv", csvP)
     End Sub
 #End Region
@@ -174,6 +164,7 @@ Public Class frmMainPage
 #End Region
 
 #Region "Form Component Events"
+    'Double Click Logo of NCCEEP to redirect to ncceep website
     Private Sub picLogo_DoubleClick(sender As Object, e As EventArgs) Handles picLogo.DoubleClick
         Process.Start("https://www.ncceep.com/")
     End Sub
@@ -182,7 +173,7 @@ Public Class frmMainPage
     Private Sub txtEmail_KeyDown(sender As Object, e As KeyEventArgs) Handles txtEmail.KeyDown
         If e.KeyCode = Keys.Enter Then
             If Not (txtName.Text.Equals(txtPhone.Text) And txtName.Text.Equals(txtEmail.Text) And txtName.Text.Equals("") = True) Then
-                DataGridView1.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text)
+                dtagrdContact.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text)
                 amount_total_curr_part += 1
             End If
         End If
@@ -198,7 +189,7 @@ Public Class frmMainPage
     'Adds participants to database
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If Not (txtName.Text.Equals(txtPhone.Text) And txtName.Text.Equals(txtEmail.Text) And txtName.Text.Equals("") = True) Then
-            DataGridView1.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text)
+            dtagrdContact.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text)
             amount_total_curr_part += 1
         End If
     End Sub
@@ -213,7 +204,7 @@ Public Class frmMainPage
         Me.Hide()
     End Sub
 
-    Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
+    Private Sub dtagrdContact_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtagrdContact.CellDoubleClick
         amount_total_curr_part += 1
     End Sub
 #End Region

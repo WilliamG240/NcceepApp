@@ -42,7 +42,7 @@ Partial Class frmMainPage
         Me.txtName = New System.Windows.Forms.TextBox()
         Me.txtPhone = New System.Windows.Forms.TextBox()
         Me.txtEmail = New System.Windows.Forms.TextBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.dtagrdContact = New System.Windows.Forms.DataGridView()
         Me.clmName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -51,7 +51,7 @@ Partial Class frmMainPage
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.picLogo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtagrdContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -217,18 +217,18 @@ Partial Class frmMainPage
         Me.txtEmail.Size = New System.Drawing.Size(142, 20)
         Me.txtEmail.TabIndex = 14
         '
-        'DataGridView1
+        'dtagrdContact
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.BackgroundColor = System.Drawing.Color.Gainsboro
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clmName, Me.clmPhone, Me.clmEmail})
-        Me.DataGridView1.Location = New System.Drawing.Point(220, 271)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RowHeadersWidth = 50
-        Me.DataGridView1.Size = New System.Drawing.Size(536, 190)
-        Me.DataGridView1.TabIndex = 16
+        Me.dtagrdContact.AllowUserToAddRows = False
+        Me.dtagrdContact.BackgroundColor = System.Drawing.Color.Gainsboro
+        Me.dtagrdContact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dtagrdContact.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clmName, Me.clmPhone, Me.clmEmail})
+        Me.dtagrdContact.Location = New System.Drawing.Point(220, 271)
+        Me.dtagrdContact.Name = "dtagrdContact"
+        Me.dtagrdContact.ReadOnly = True
+        Me.dtagrdContact.RowHeadersWidth = 50
+        Me.dtagrdContact.Size = New System.Drawing.Size(536, 190)
+        Me.dtagrdContact.TabIndex = 16
         '
         'clmName
         '
@@ -273,7 +273,7 @@ Partial Class frmMainPage
         Series1.ChartArea = "ChartArea1"
         Series1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
         Series1.Legend = "Legend1"
-        Series1.Name = "Participants"
+        Series1.Name = "Members"
         Series1.ShadowColor = System.Drawing.Color.Silver
         Me.Chart1.Series.Add(Series1)
         Me.Chart1.Size = New System.Drawing.Size(536, 115)
@@ -288,7 +288,7 @@ Partial Class frmMainPage
         Me.ClientSize = New System.Drawing.Size(769, 483)
         Me.Controls.Add(Me.Chart1)
         Me.Controls.Add(Me.Copyright)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.dtagrdContact)
         Me.Controls.Add(Me.txtEmail)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.txtPhone)
@@ -300,13 +300,14 @@ Partial Class frmMainPage
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMainPage"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form3"
         Me.Panel1.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         CType(Me.picLogo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtagrdContact, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -328,7 +329,7 @@ Partial Class frmMainPage
     Friend WithEvents txtName As System.Windows.Forms.TextBox
     Friend WithEvents txtPhone As System.Windows.Forms.TextBox
     Friend WithEvents txtEmail As System.Windows.Forms.TextBox
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents dtagrdContact As System.Windows.Forms.DataGridView
     Friend WithEvents clmName As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmPhone As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmEmail As System.Windows.Forms.DataGridViewTextBoxColumn

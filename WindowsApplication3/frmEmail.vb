@@ -218,7 +218,14 @@ Public Class frmEmail
     End Sub
 
 #End Region
+    Private Sub frmEmail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        htmlEditor.Navigate("about:blank")
+        m_htmlDoc = CType(htmlEditor.Document.DomDocument, mshtml.IHTMLDocument2)
+        m_htmlDoc.designMode = "on"
+        InitFonts()
+    End Sub
 
+#Region "Form Component Events"
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo)
         If result = DialogResult.No Then
@@ -259,7 +266,7 @@ Public Class frmEmail
             'The example code
             'oMail.To = New AddressCollection( "test1@adminsystem.com, test2@adminsystem.com" )
             'oMail.To = New AddressCollection( "Tester1<test@adminsystem.com>, Tester2<test2@adminsystem.com>")
-            For Each row As DataGridViewRow In frmMainPage.DataGridView1.Rows
+            For Each row As DataGridViewRow In frmMainPage.dtagrdContact.Rows
                 oMail.To.Add(row.Cells(2).Value)
             Next
             'You can add more recipient by Add method
@@ -322,9 +329,17 @@ Public Class frmEmail
             sbStatus.Text = errStr
         End If
         btnSend.Enabled = True
-        btnCancel.Enabled = False
     End Sub
 
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo)
+        If result = DialogResult.No Then
+
+        ElseIf result = DialogResult.Yes Then
+            Me.Close()
+            frmMainPage.Show()
+        End If
+    End Sub
 
     Private Sub lstSize_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstSize.SelectedIndexChanged
         Dim size As String = lstSize.Text
@@ -339,24 +354,7 @@ Public Class frmEmail
         m_htmlDoc.execCommand("fontname", False, font)
         htmlEditor.Focus()
     End Sub
-
-    Private Sub frmEmail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        htmlEditor.Navigate("about:blank")
-        m_htmlDoc = CType(htmlEditor.Document.DomDocument, mshtml.IHTMLDocument2)
-        m_htmlDoc.designMode = "on"
-        InitFonts()
-
-    End Sub
-
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo)
-        If result = DialogResult.No Then
-
-        ElseIf result = DialogResult.Yes Then
-            Me.Close()
-            frmMainPage.Show()
-        End If
-    End Sub
+#End Region
 
 #Region "Form Movement"
     Public IsDragging As Boolean = False, IsClick As Boolean = False
