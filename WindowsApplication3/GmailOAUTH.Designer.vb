@@ -32,14 +32,14 @@ Partial Class GmailOAUTH
         Me.webOAUTH.Location = New System.Drawing.Point(0, 0)
         Me.webOAUTH.MinimumSize = New System.Drawing.Size(20, 20)
         Me.webOAUTH.Name = "webOAUTH"
-        Me.webOAUTH.Size = New System.Drawing.Size(495, 573)
+        Me.webOAUTH.Size = New System.Drawing.Size(495, 626)
         Me.webOAUTH.TabIndex = 1
         '
         'GmailOAUTH
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(495, 573)
+        Me.ClientSize = New System.Drawing.Size(495, 626)
         Me.Controls.Add(Me.webOAUTH)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "GmailOAUTH"
