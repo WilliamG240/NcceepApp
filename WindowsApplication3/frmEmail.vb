@@ -315,8 +315,7 @@ Public Class frmEmail
             sbStatus.Text = "Connecting ... "
             pgSending.Value = 0
             oSmtp.SendMail(oServer, oMail)
-            MessageBox.Show(String.Format("The message was sent to {0} successfully!",
-  oSmtp.CurrentSmtpServer.Server))
+            MessageBox.Show("The email has been sent successfully!")
             sbStatus.Text = "Completed"
 
         Catch exp As SmtpTerminatedException
