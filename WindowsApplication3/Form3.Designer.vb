@@ -47,12 +47,12 @@ Partial Class frmMainPage
         Me.clmPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Copyright = New System.Windows.Forms.Label()
-        Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.chMembers = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.picLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtagrdContact, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chMembers, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -258,27 +258,27 @@ Partial Class frmMainPage
         Me.Copyright.TabIndex = 0
         Me.Copyright.Text = "© William Nono 2018"
         '
-        'Chart1
+        'chMembers
         '
-        Me.Chart1.BackColor = System.Drawing.Color.Gainsboro
-        Me.Chart1.BorderlineColor = System.Drawing.Color.Gainsboro
+        Me.chMembers.BackColor = System.Drawing.Color.Gainsboro
+        Me.chMembers.BorderlineColor = System.Drawing.Color.Gainsboro
         ChartArea1.BackColor = System.Drawing.Color.Gainsboro
         ChartArea1.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea1)
+        Me.chMembers.ChartAreas.Add(ChartArea1)
         Legend1.BackColor = System.Drawing.Color.Gainsboro
         Legend1.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend1)
-        Me.Chart1.Location = New System.Drawing.Point(220, 143)
-        Me.Chart1.Name = "Chart1"
+        Me.chMembers.Legends.Add(Legend1)
+        Me.chMembers.Location = New System.Drawing.Point(220, 143)
+        Me.chMembers.Name = "chMembers"
         Series1.ChartArea = "ChartArea1"
         Series1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
         Series1.Legend = "Legend1"
         Series1.Name = "Members"
         Series1.ShadowColor = System.Drawing.Color.Silver
-        Me.Chart1.Series.Add(Series1)
-        Me.Chart1.Size = New System.Drawing.Size(536, 115)
-        Me.Chart1.TabIndex = 17
-        Me.Chart1.Text = "Chart1"
+        Me.chMembers.Series.Add(Series1)
+        Me.chMembers.Size = New System.Drawing.Size(536, 115)
+        Me.chMembers.TabIndex = 17
+        Me.chMembers.Text = "Chart1"
         '
         'frmMainPage
         '
@@ -286,7 +286,7 @@ Partial Class frmMainPage
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gainsboro
         Me.ClientSize = New System.Drawing.Size(769, 483)
-        Me.Controls.Add(Me.Chart1)
+        Me.Controls.Add(Me.chMembers)
         Me.Controls.Add(Me.Copyright)
         Me.Controls.Add(Me.dtagrdContact)
         Me.Controls.Add(Me.txtEmail)
@@ -308,7 +308,7 @@ Partial Class frmMainPage
         Me.Panel3.ResumeLayout(False)
         CType(Me.picLogo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtagrdContact, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chMembers, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -335,5 +335,5 @@ Partial Class frmMainPage
     Friend WithEvents clmEmail As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents pnlDrag As System.Windows.Forms.Panel
     Friend WithEvents Copyright As System.Windows.Forms.Label
-    Friend WithEvents Chart1 As System.Windows.Forms.DataVisualization.Charting.Chart
+    Friend WithEvents chMembers As System.Windows.Forms.DataVisualization.Charting.Chart
 End Class

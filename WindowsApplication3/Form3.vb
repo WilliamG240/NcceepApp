@@ -26,13 +26,6 @@ Public Class frmMainPage
         'Reads the data from csv file and signals to reconfirm if new month
         date1 = System.DateTime.Now.ToString("yyyy/MM")
         If System.IO.File.Exists("C:\Users\William\Dropbox\Participants_list.csv") = True Then
-            For Each line As String In System.IO.File.ReadAllLines("C:\Users\William\Dropbox\Participants_list.csv")
-                'If line.StartsWith("2018") Then
-                '    If Not line.Equals(date1) Then
-                '        MsgBox("Please reconfirm with the shown businesses if they would like to participate in Sokoni again")
-                '    End If
-                'End If
-            Next
             My.Computer.FileSystem.DeleteFile("C:\Users\William\Dropbox\Participants_list.csv")
         End If
 
@@ -42,7 +35,7 @@ Public Class frmMainPage
             MyReader.Delimiters = New String() {","}
             Dim currentRow As String()
             Dim CurrentPoint As Integer = 0
-            Chart1.Series(0).Points.Clear()
+            chMembers.Series(0).Points.Clear()
             While Not MyReader.EndOfData
                 Try
                     currentRow = MyReader.ReadFields()
@@ -50,8 +43,8 @@ Public Class frmMainPage
 
                     Try
                         Dim Y As Double = CDbl(currentRow(1))
-                        Chart1.Series(0).Points.AddY(Y)
-                        Chart1.Series(0).Points(CurrentPoint).AxisLabel = D
+                        chMembers.Series(0).Points.AddY(Y)
+                        chMembers.Series(0).Points(CurrentPoint).AxisLabel = D
                         If D.Contains(date1) Then
                             amount_total_curr_part += Y
                         End If
