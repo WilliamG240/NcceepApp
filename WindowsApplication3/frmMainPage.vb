@@ -9,12 +9,14 @@ Public Class frmMainPage
     'Handles the amount of participants
     Public amount_old_part As Integer
     Public amount_total_curr_part As Integer
+    Public username As String
 #End Region
 
 #Region "Form Events"
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If System.IO.File.Exists("C:\Users\William\Dropbox\Participants_list.csv") = True Then
-            For Each line As String In System.IO.File.ReadAllLines("C:\Users\William\Dropbox\Participants_list.csv")
+        username = Environment.UserName
+        If System.IO.File.Exists("C:\Users\" + username + "\Dropbox\Participants_list.csv") = True Then
+            For Each line As String In System.IO.File.ReadAllLines("C:\Users\" + username + "\Dropbox\Participants_list.csv")
                 If Not line.StartsWith("2018") And line.Contains("Name") = False Then
                     dtagrdContact.Rows.Add(line.Split(","))
                 End If
@@ -25,12 +27,12 @@ Public Class frmMainPage
     Private Sub Form3_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
         'Reads the data from csv file and signals to reconfirm if new month
         date1 = System.DateTime.Now.ToString("yyyy/MM")
-        If System.IO.File.Exists("C:\Users\William\Dropbox\Participants_list.csv") = True Then
-            My.Computer.FileSystem.DeleteFile("C:\Users\William\Dropbox\Participants_list.csv")
+        If System.IO.File.Exists("C:\Users\" + username + "\Dropbox\Participants_list.csv") = True Then
+            My.Computer.FileSystem.DeleteFile("C:\Users\" + username + "\Dropbox\Participants_list.csv")
         End If
 
         'Reads the data in csv file and converts it to show on chart on form
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\Users\William\Dropbox\Participants_Date.csv")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\Users\" + username + "\Dropbox\Participants_Date.csv")
             MyReader.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited
             MyReader.Delimiters = New String() {","}
             Dim currentRow As String()
@@ -87,17 +89,17 @@ Public Class frmMainPage
         Next
         csv += date1
         'Exporting to Excel
-        Dim folderPath As String = "C:\Users\William\Dropbox\"
+        Dim folderPath As String = "C:\Users\" + username + "\Dropbox\"
         File.WriteAllText(folderPath & "Participants_list.csv", csv)
 
         'Exporting chart data of participants to csv
-        If System.IO.File.Exists("C:\Users\William\Dropbox\Participants_Date.csv") = True Then
-            For Each line As String In System.IO.File.ReadAllLines("C:\Users\William\Dropbox\Participants_Date.csv")
+        If System.IO.File.Exists("C:\Users\" + username + "\Dropbox\Participants_Date.csv") = True Then
+            For Each line As String In System.IO.File.ReadAllLines("C:\Users\" + username + "\Dropbox\Participants_Date.csv")
                 If Not line.Contains(date1) Then
                     csvP += line + vbCr & vbLf
                 End If
             Next
-            My.Computer.FileSystem.DeleteFile("C:\Users\William\Dropbox\Participants_Date.csv")
+            My.Computer.FileSystem.DeleteFile("C:\Users\" + username + "\Dropbox\Participants_Date.csv")
         End If
 
         csvP += date1 + "," + amount_total_curr_part.ToString()
@@ -185,6 +187,10 @@ Public Class frmMainPage
             dtagrdContact.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text)
             amount_total_curr_part += 1
         End If
+    End Sub
+
+    Private Sub txtName_TextChanged(sender As Object, e As EventArgs) Handles txtName.TextChanged
+
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click

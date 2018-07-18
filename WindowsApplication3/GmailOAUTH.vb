@@ -67,6 +67,7 @@ Public Class GmailOAUTH
             While (Not rqstAr.AsyncWaitHandle.WaitOne(5, False))
                 Application.DoEvents()
             End While
+
             Dim ofs As Stream = oClient.EndGetRequestStream(rqstAr)
 
             Dim dt As Byte() = System.Text.Encoding.UTF8.GetBytes(data)

@@ -43,6 +43,7 @@ Partial Class GmailOAUTH
         Me.Controls.Add(Me.webOAUTH)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "GmailOAUTH"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Authorization"
         Me.ResumeLayout(False)
 

@@ -321,7 +321,7 @@ Public Class frmEmail
         Catch exp As SmtpTerminatedException
             errStr = exp.Message
         Catch exp As System.Exception
-            errStr = String.Format("Exception: ", exp.Message)
+            errStr = "Exception: " + exp.Message
         End Try
         If errStr.Length > 0 Then
             MessageBox.Show(errStr)

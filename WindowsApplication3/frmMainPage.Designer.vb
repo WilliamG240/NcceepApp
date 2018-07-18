@@ -23,9 +23,9 @@ Partial Class frmMainPage
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMainPage))
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.pnlDrag = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -123,7 +123,7 @@ Partial Class frmMainPage
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(168, 52)
         Me.btnAdd.TabIndex = 0
-        Me.btnAdd.Text = "Add Participant"
+        Me.btnAdd.Text = "Add Member / Subscriber"
         Me.btnAdd.UseVisualStyleBackColor = False
         '
         'Panel2
@@ -198,21 +198,21 @@ Partial Class frmMainPage
         '
         'txtName
         '
-        Me.txtName.Location = New System.Drawing.Point(314, 105)
+        Me.txtName.Location = New System.Drawing.Point(314, 100)
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(100, 20)
         Me.txtName.TabIndex = 12
         '
         'txtPhone
         '
-        Me.txtPhone.Location = New System.Drawing.Point(444, 105)
+        Me.txtPhone.Location = New System.Drawing.Point(444, 100)
         Me.txtPhone.Name = "txtPhone"
         Me.txtPhone.Size = New System.Drawing.Size(147, 20)
         Me.txtPhone.TabIndex = 13
         '
         'txtEmail
         '
-        Me.txtEmail.Location = New System.Drawing.Point(614, 105)
+        Me.txtEmail.Location = New System.Drawing.Point(614, 100)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(142, 20)
         Me.txtEmail.TabIndex = 14
@@ -262,20 +262,20 @@ Partial Class frmMainPage
         '
         Me.chMembers.BackColor = System.Drawing.Color.Gainsboro
         Me.chMembers.BorderlineColor = System.Drawing.Color.Gainsboro
-        ChartArea1.BackColor = System.Drawing.Color.Gainsboro
-        ChartArea1.Name = "ChartArea1"
-        Me.chMembers.ChartAreas.Add(ChartArea1)
-        Legend1.BackColor = System.Drawing.Color.Gainsboro
-        Legend1.Name = "Legend1"
-        Me.chMembers.Legends.Add(Legend1)
+        ChartArea2.BackColor = System.Drawing.Color.Gainsboro
+        ChartArea2.Name = "ChartArea1"
+        Me.chMembers.ChartAreas.Add(ChartArea2)
+        Legend2.BackColor = System.Drawing.Color.Gainsboro
+        Legend2.Name = "Legend1"
+        Me.chMembers.Legends.Add(Legend2)
         Me.chMembers.Location = New System.Drawing.Point(220, 143)
         Me.chMembers.Name = "chMembers"
-        Series1.ChartArea = "ChartArea1"
-        Series1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
-        Series1.Legend = "Legend1"
-        Series1.Name = "Members"
-        Series1.ShadowColor = System.Drawing.Color.Silver
-        Me.chMembers.Series.Add(Series1)
+        Series2.ChartArea = "ChartArea1"
+        Series2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
+        Series2.Legend = "Legend1"
+        Series2.Name = "Members"
+        Series2.ShadowColor = System.Drawing.Color.Silver
+        Me.chMembers.Series.Add(Series2)
         Me.chMembers.Size = New System.Drawing.Size(536, 115)
         Me.chMembers.TabIndex = 17
         Me.chMembers.Text = "Chart1"
