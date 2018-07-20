@@ -32,37 +32,39 @@ Public Class frmMainPage
         End If
 
         'Reads the data in csv file and converts it to show on chart on form
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\Users\" + username + "\Dropbox\Participants_Date.csv")
-            MyReader.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited
-            MyReader.Delimiters = New String() {","}
-            Dim currentRow As String()
-            Dim CurrentPoint As Integer = 0
-            chMembers.Series(0).Points.Clear()
-            While Not MyReader.EndOfData
-                Try
-                    currentRow = MyReader.ReadFields()
-                    Dim D As String = currentRow(0)
-
+        If System.IO.File.Exists("C:\Users\" + username + "\Dropbox\Participants_Date.csv") = True Then
+            Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\Users\" + username + "\Dropbox\Participants_Date.csv")
+                MyReader.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited
+                MyReader.Delimiters = New String() {","}
+                Dim currentRow As String()
+                Dim CurrentPoint As Integer = 0
+                chMembers.Series(0).Points.Clear()
+                While Not MyReader.EndOfData
                     Try
-                        Dim Y As Double = CDbl(currentRow(1))
-                        chMembers.Series(0).Points.AddY(Y)
-                        chMembers.Series(0).Points(CurrentPoint).AxisLabel = D
-                        If D.Contains(date1) Then
-                            amount_total_curr_part += Y
-                        End If
-                        CurrentPoint += 1
-                    Catch ex As InvalidCastException
+                        currentRow = MyReader.ReadFields()
+                        Dim D As String = currentRow(0)
+
+                        Try
+                            Dim Y As Double = CDbl(currentRow(1))
+                            chMembers.Series(0).Points.AddY(Y)
+                            chMembers.Series(0).Points(CurrentPoint).AxisLabel = D
+                            If D.Contains(date1) Then
+                                amount_total_curr_part += Y
+                            End If
+                            CurrentPoint += 1
+                        Catch ex As InvalidCastException
+                            If CurrentPoint <> 0 Then
+                                MsgBox("Item " & currentRow(1) & " is invalid.  Skipping")
+                            End If
+                        End Try
+                    Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
                         If CurrentPoint <> 0 Then
-                            MsgBox("Item " & currentRow(1) & " is invalid.  Skipping")
+                            MsgBox("Line " & ex.Message & " is invalid.  Skipping")
                         End If
                     End Try
-                Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
-                    If CurrentPoint <> 0 Then
-                        MsgBox("Line " & ex.Message & " is invalid.  Skipping")
-                    End If
-                End Try
-            End While
-        End Using
+                End While
+            End Using
+        End If
     End Sub
 
     Private Sub Form3_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -193,6 +195,10 @@ Public Class frmMainPage
 
     End Sub
 
+    Private Sub dtagrdContact_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles dtagrdContact.RowsRemoved
+        amount_total_curr_part -= 1
+    End Sub
+
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
     End Sub
@@ -203,9 +209,7 @@ Public Class frmMainPage
         Me.Hide()
     End Sub
 
-    Private Sub dtagrdContact_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtagrdContact.CellDoubleClick
-        amount_total_curr_part += 1
-    End Sub
+
 #End Region
 
 End Class

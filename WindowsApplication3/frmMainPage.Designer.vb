@@ -23,9 +23,9 @@ Partial Class frmMainPage
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMainPage))
-        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.pnlDrag = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -48,7 +48,9 @@ Partial Class frmMainPage
         Me.clmEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Copyright = New System.Windows.Forms.Label()
         Me.chMembers = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.lblCategories = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.picLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtagrdContact, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,10 +131,11 @@ Partial Class frmMainPage
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.btnClose)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(167, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(602, 18)
+        Me.Panel2.Size = New System.Drawing.Size(759, 18)
         Me.Panel2.TabIndex = 1
         '
         'Panel3
@@ -159,7 +162,7 @@ Partial Class frmMainPage
         Me.btnClose.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnClose.FlatAppearance.BorderSize = 0
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnClose.Location = New System.Drawing.Point(695, 0)
+        Me.btnClose.Location = New System.Drawing.Point(686, 0)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(73, 18)
         Me.btnClose.TabIndex = 3
@@ -262,30 +265,41 @@ Partial Class frmMainPage
         '
         Me.chMembers.BackColor = System.Drawing.Color.Gainsboro
         Me.chMembers.BorderlineColor = System.Drawing.Color.Gainsboro
-        ChartArea2.BackColor = System.Drawing.Color.Gainsboro
-        ChartArea2.Name = "ChartArea1"
-        Me.chMembers.ChartAreas.Add(ChartArea2)
-        Legend2.BackColor = System.Drawing.Color.Gainsboro
-        Legend2.Name = "Legend1"
-        Me.chMembers.Legends.Add(Legend2)
+        ChartArea1.BackColor = System.Drawing.Color.Gainsboro
+        ChartArea1.Name = "ChartArea1"
+        Me.chMembers.ChartAreas.Add(ChartArea1)
+        Legend1.BackColor = System.Drawing.Color.Gainsboro
+        Legend1.Name = "Legend1"
+        Me.chMembers.Legends.Add(Legend1)
         Me.chMembers.Location = New System.Drawing.Point(220, 143)
         Me.chMembers.Name = "chMembers"
-        Series2.ChartArea = "ChartArea1"
-        Series2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
-        Series2.Legend = "Legend1"
-        Series2.Name = "Members"
-        Series2.ShadowColor = System.Drawing.Color.Silver
-        Me.chMembers.Series.Add(Series2)
+        Series1.ChartArea = "ChartArea1"
+        Series1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
+        Series1.Legend = "Legend1"
+        Series1.Name = "Members"
+        Series1.ShadowColor = System.Drawing.Color.Silver
+        Me.chMembers.Series.Add(Series1)
         Me.chMembers.Size = New System.Drawing.Size(536, 115)
         Me.chMembers.TabIndex = 17
         Me.chMembers.Text = "Chart1"
+        '
+        'lblCategories
+        '
+        Me.lblCategories.AutoSize = True
+        Me.lblCategories.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCategories.Location = New System.Drawing.Point(780, 57)
+        Me.lblCategories.Name = "lblCategories"
+        Me.lblCategories.Size = New System.Drawing.Size(88, 19)
+        Me.lblCategories.TabIndex = 18
+        Me.lblCategories.Text = "Categories"
         '
         'frmMainPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gainsboro
-        Me.ClientSize = New System.Drawing.Size(769, 483)
+        Me.ClientSize = New System.Drawing.Size(926, 483)
+        Me.Controls.Add(Me.lblCategories)
         Me.Controls.Add(Me.chMembers)
         Me.Controls.Add(Me.Copyright)
         Me.Controls.Add(Me.dtagrdContact)
@@ -296,7 +310,6 @@ Partial Class frmMainPage
         Me.Controls.Add(Me.lblEmail)
         Me.Controls.Add(Me.lblPhone)
         Me.Controls.Add(Me.lblName)
-        Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -305,6 +318,7 @@ Partial Class frmMainPage
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form3"
         Me.Panel1.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         CType(Me.picLogo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtagrdContact, System.ComponentModel.ISupportInitialize).EndInit()
@@ -336,4 +350,5 @@ Partial Class frmMainPage
     Friend WithEvents pnlDrag As System.Windows.Forms.Panel
     Friend WithEvents Copyright As System.Windows.Forms.Label
     Friend WithEvents chMembers As System.Windows.Forms.DataVisualization.Charting.Chart
+    Friend WithEvents lblCategories As Label
 End Class
