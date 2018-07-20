@@ -3,11 +3,12 @@ Imports System.Threading.Tasks
 Imports Google.Apis.Gmail
 Public Class frmEmail
     Inherits System.Windows.Forms.Form
-
+#Region "Public/Private Variables"
     Private m_bcancel As Boolean = False
     Private m_eventtick As Long = 0
     Private m_htmlDoc As mshtml.IHTMLDocument2
 
+#End Region
 
 
 #Region "Initialize Fonts List"
@@ -267,7 +268,9 @@ Public Class frmEmail
             'oMail.To = New AddressCollection( "test1@adminsystem.com, test2@adminsystem.com" )
             'oMail.To = New AddressCollection( "Tester1<test@adminsystem.com>, Tester2<test2@adminsystem.com>")
             For Each row As DataGridViewRow In frmMainPage.dtagrdContact.Rows
-                If row.Cells(3).Value.Equals(cboTo.SelectedItem) Then
+                If cboTo.SelectedItem.Equals("All") Then
+                    oMail.To.Add(row.Cells(2).Value)
+                ElseIf row.Cells(3).Value.Equals(cboTo.SelectedItem) Then
                     oMail.To.Add(row.Cells(2).Value)
                 ElseIf row.Cells(2).Value.Equals(cboTo.Text) Then
                     oMail.To.Add(row.Cells(2).Value)
@@ -369,7 +372,49 @@ Public Class frmEmail
     End Sub
 
     Private Sub cboTo_TextUpdate(sender As Object, e As EventArgs) Handles cboTo.TextUpdate
+        If Not cboTo.Text.Equals("") Then
+            Dim index As Integer = 0
+            Dim item_array(30)
+            If Not cboTo.Items.Contains(cboTo.Text) Then
+                For Each item In cboTo.Items
+                    item_array(index) = item
+                    index += 1
+                Next
 
+                For i = 0 To 30
+                    cboTo.Items.Remove(item_array(i))
+                Next i
+
+
+                For Each row As DataGridViewRow In frmMainPage.dtagrdContact.Rows
+                    If row.Cells(0).Value.ToString.Contains(cboTo.Text) Then
+                        cboTo.Items.Add(row.Cells(2).Value)
+                    End If
+                Next
+            End If
+        Else
+            Dim index As Integer = 0
+            Dim item_array(30)
+            For Each item In cboTo.Items
+                item_array(Index) = item
+                Index += 1
+            Next
+
+            For i = 0 To 30
+                cboTo.Items.Remove(item_array(i))
+            Next i
+
+            cboTo.Items.Add("Executives")
+            cboTo.Items.Add("Associate Staff")
+            cboTo.Items.Add("Applicants")
+            cboTo.Items.Add("Omoluabi")
+            cboTo.Items.Add("Sokoni")
+            cboTo.Items.Add("Seniors")
+            cboTo.Items.Add("BYAP")
+            cboTo.Items.Add("BPO")
+            cboTo.Items.Add("All")
+
+        End If
 
     End Sub
 

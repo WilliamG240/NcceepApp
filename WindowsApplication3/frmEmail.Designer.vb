@@ -169,7 +169,7 @@ Partial Class frmEmail
         'cboTo
         '
         Me.cboTo.FormattingEnabled = True
-        Me.cboTo.Items.AddRange(New Object() {"Executives", "Associate Staff", "Applicants", "Omoluabi", "Sokoni", "Seniors", "BYAP", "BPO"})
+        Me.cboTo.Items.AddRange(New Object() {"Executives", "Associate Staff", "Applicants", "Omoluabi", "Sokoni", "Seniors", "BYAP", "BPO", "All"})
         Me.cboTo.Location = New System.Drawing.Point(60, 41)
         Me.cboTo.Name = "cboTo"
         Me.cboTo.Size = New System.Drawing.Size(121, 21)
