@@ -186,10 +186,18 @@ Public Class frmMainPage
     'Adds participants to database
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If Not (txtName.Text.Equals(txtPhone.Text) And txtName.Text.Equals(txtEmail.Text) And txtName.Text.Equals("") = True) Then
-            dtagrdContact.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text)
+            Dim categories As String
+            For Each chk As Control In Me.Controls
+                If TypeOf chk Is RadioButton AndAlso DirectCast(chk, RadioButton).Checked Then
+                    categories = chk.Text
+                End If
+            Next
+            dtagrdContact.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text, categories)
             amount_total_curr_part += 1
+
         End If
     End Sub
+
 
     Private Sub dtagrdContact_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles dtagrdContact.RowsRemoved
         amount_total_curr_part -= 1

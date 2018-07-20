@@ -23,9 +23,9 @@ Partial Class frmMainPage
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMainPage))
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend3 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.pnlDrag = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -46,17 +46,25 @@ Partial Class frmMainPage
         Me.clmName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmCategories = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Copyright = New System.Windows.Forms.Label()
         Me.chMembers = New System.Windows.Forms.DataVisualization.Charting.Chart()
-        Me.lblCategories = New System.Windows.Forms.Label()
-        Me.chkSokoni = New System.Windows.Forms.CheckBox()
-        Me.chkExecutives = New System.Windows.Forms.CheckBox()
+        Me.grpCategories = New System.Windows.Forms.GroupBox()
+        Me.radAssociate = New System.Windows.Forms.RadioButton()
+        Me.radExec = New System.Windows.Forms.RadioButton()
+        Me.radSokoni = New System.Windows.Forms.RadioButton()
+        Me.radBPO = New System.Windows.Forms.RadioButton()
+        Me.radBYAP = New System.Windows.Forms.RadioButton()
+        Me.radApplicants = New System.Windows.Forms.RadioButton()
+        Me.radSeniors = New System.Windows.Forms.RadioButton()
+        Me.radOmoluabi = New System.Windows.Forms.RadioButton()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.picLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtagrdContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chMembers, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpCategories.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -137,7 +145,7 @@ Partial Class frmMainPage
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(167, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(759, 18)
+        Me.Panel2.Size = New System.Drawing.Size(816, 18)
         Me.Panel2.TabIndex = 1
         '
         'btnClose
@@ -145,7 +153,7 @@ Partial Class frmMainPage
         Me.btnClose.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnClose.FlatAppearance.BorderSize = 0
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnClose.Location = New System.Drawing.Point(686, 0)
+        Me.btnClose.Location = New System.Drawing.Point(743, 0)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(73, 18)
         Me.btnClose.TabIndex = 3
@@ -203,21 +211,21 @@ Partial Class frmMainPage
         '
         'txtName
         '
-        Me.txtName.Location = New System.Drawing.Point(314, 100)
+        Me.txtName.Location = New System.Drawing.Point(314, 87)
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(100, 20)
         Me.txtName.TabIndex = 12
         '
         'txtPhone
         '
-        Me.txtPhone.Location = New System.Drawing.Point(444, 100)
+        Me.txtPhone.Location = New System.Drawing.Point(444, 87)
         Me.txtPhone.Name = "txtPhone"
         Me.txtPhone.Size = New System.Drawing.Size(147, 20)
         Me.txtPhone.TabIndex = 13
         '
         'txtEmail
         '
-        Me.txtEmail.Location = New System.Drawing.Point(614, 100)
+        Me.txtEmail.Location = New System.Drawing.Point(614, 87)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(142, 20)
         Me.txtEmail.TabIndex = 14
@@ -227,12 +235,12 @@ Partial Class frmMainPage
         Me.dtagrdContact.AllowUserToAddRows = False
         Me.dtagrdContact.BackgroundColor = System.Drawing.Color.Gainsboro
         Me.dtagrdContact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtagrdContact.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clmName, Me.clmPhone, Me.clmEmail})
+        Me.dtagrdContact.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clmName, Me.clmPhone, Me.clmEmail, Me.clmCategories})
         Me.dtagrdContact.Location = New System.Drawing.Point(220, 271)
         Me.dtagrdContact.Name = "dtagrdContact"
         Me.dtagrdContact.ReadOnly = True
         Me.dtagrdContact.RowHeadersWidth = 50
-        Me.dtagrdContact.Size = New System.Drawing.Size(536, 190)
+        Me.dtagrdContact.Size = New System.Drawing.Size(553, 190)
         Me.dtagrdContact.TabIndex = 16
         '
         'clmName
@@ -254,10 +262,16 @@ Partial Class frmMainPage
         Me.clmEmail.ReadOnly = True
         Me.clmEmail.Width = 200
         '
+        'clmCategories
+        '
+        Me.clmCategories.HeaderText = "Categories"
+        Me.clmCategories.Name = "clmCategories"
+        Me.clmCategories.ReadOnly = True
+        '
         'Copyright
         '
         Me.Copyright.AutoSize = True
-        Me.Copyright.Location = New System.Drawing.Point(648, 464)
+        Me.Copyright.Location = New System.Drawing.Point(875, 470)
         Me.Copyright.Name = "Copyright"
         Me.Copyright.Size = New System.Drawing.Size(108, 13)
         Me.Copyright.TabIndex = 0
@@ -267,63 +281,137 @@ Partial Class frmMainPage
         '
         Me.chMembers.BackColor = System.Drawing.Color.Gainsboro
         Me.chMembers.BorderlineColor = System.Drawing.Color.Gainsboro
-        ChartArea1.BackColor = System.Drawing.Color.Gainsboro
-        ChartArea1.Name = "ChartArea1"
-        Me.chMembers.ChartAreas.Add(ChartArea1)
-        Legend1.BackColor = System.Drawing.Color.Gainsboro
-        Legend1.Name = "Legend1"
-        Me.chMembers.Legends.Add(Legend1)
+        ChartArea3.BackColor = System.Drawing.Color.Gainsboro
+        ChartArea3.Name = "ChartArea1"
+        Me.chMembers.ChartAreas.Add(ChartArea3)
+        Legend3.BackColor = System.Drawing.Color.Gainsboro
+        Legend3.Name = "Legend1"
+        Me.chMembers.Legends.Add(Legend3)
         Me.chMembers.Location = New System.Drawing.Point(220, 143)
         Me.chMembers.Name = "chMembers"
-        Series1.ChartArea = "ChartArea1"
-        Series1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
-        Series1.Legend = "Legend1"
-        Series1.Name = "Members"
-        Series1.ShadowColor = System.Drawing.Color.Silver
-        Me.chMembers.Series.Add(Series1)
+        Series3.ChartArea = "ChartArea1"
+        Series3.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
+        Series3.Legend = "Legend1"
+        Series3.Name = "Members"
+        Series3.ShadowColor = System.Drawing.Color.Silver
+        Me.chMembers.Series.Add(Series3)
         Me.chMembers.Size = New System.Drawing.Size(536, 115)
         Me.chMembers.TabIndex = 17
         Me.chMembers.Text = "Chart1"
         '
-        'lblCategories
+        'grpCategories
         '
-        Me.lblCategories.AutoSize = True
-        Me.lblCategories.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCategories.Location = New System.Drawing.Point(780, 57)
-        Me.lblCategories.Name = "lblCategories"
-        Me.lblCategories.Size = New System.Drawing.Size(88, 19)
-        Me.lblCategories.TabIndex = 18
-        Me.lblCategories.Text = "Categories"
+        Me.grpCategories.Controls.Add(Me.radOmoluabi)
+        Me.grpCategories.Controls.Add(Me.radBPO)
+        Me.grpCategories.Controls.Add(Me.radBYAP)
+        Me.grpCategories.Controls.Add(Me.radApplicants)
+        Me.grpCategories.Controls.Add(Me.radSeniors)
+        Me.grpCategories.Controls.Add(Me.radAssociate)
+        Me.grpCategories.Controls.Add(Me.radExec)
+        Me.grpCategories.Controls.Add(Me.radSokoni)
+        Me.grpCategories.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grpCategories.Location = New System.Drawing.Point(808, 57)
+        Me.grpCategories.Name = "grpCategories"
+        Me.grpCategories.Size = New System.Drawing.Size(145, 231)
+        Me.grpCategories.TabIndex = 27
+        Me.grpCategories.TabStop = False
+        Me.grpCategories.Text = "Categories"
         '
-        'chkSokoni
+        'radAssociate
         '
-        Me.chkSokoni.AutoSize = True
-        Me.chkSokoni.Location = New System.Drawing.Point(783, 79)
-        Me.chkSokoni.Name = "chkSokoni"
-        Me.chkSokoni.Size = New System.Drawing.Size(59, 17)
-        Me.chkSokoni.TabIndex = 19
-        Me.chkSokoni.Text = "Sokoni"
-        Me.chkSokoni.UseVisualStyleBackColor = True
+        Me.radAssociate.AutoSize = True
+        Me.radAssociate.Location = New System.Drawing.Point(6, 73)
+        Me.radAssociate.Name = "radAssociate"
+        Me.radAssociate.Size = New System.Drawing.Size(114, 20)
+        Me.radAssociate.TabIndex = 34
+        Me.radAssociate.TabStop = True
+        Me.radAssociate.Text = "Associate Staff"
+        Me.radAssociate.UseVisualStyleBackColor = True
         '
-        'chkExecutives
+        'radExec
         '
-        Me.chkExecutives.AutoSize = True
-        Me.chkExecutives.Location = New System.Drawing.Point(783, 103)
-        Me.chkExecutives.Name = "chkExecutives"
-        Me.chkExecutives.Size = New System.Drawing.Size(78, 17)
-        Me.chkExecutives.TabIndex = 20
-        Me.chkExecutives.Text = "Executives"
-        Me.chkExecutives.UseVisualStyleBackColor = True
+        Me.radExec.AutoSize = True
+        Me.radExec.Location = New System.Drawing.Point(6, 47)
+        Me.radExec.Name = "radExec"
+        Me.radExec.Size = New System.Drawing.Size(89, 20)
+        Me.radExec.TabIndex = 29
+        Me.radExec.TabStop = True
+        Me.radExec.Text = "Executives"
+        Me.radExec.UseVisualStyleBackColor = True
+        '
+        'radSokoni
+        '
+        Me.radSokoni.AutoSize = True
+        Me.radSokoni.Location = New System.Drawing.Point(6, 21)
+        Me.radSokoni.Name = "radSokoni"
+        Me.radSokoni.Size = New System.Drawing.Size(66, 20)
+        Me.radSokoni.TabIndex = 28
+        Me.radSokoni.TabStop = True
+        Me.radSokoni.Text = "Sokoni"
+        Me.radSokoni.UseVisualStyleBackColor = True
+        '
+        'radBPO
+        '
+        Me.radBPO.AutoSize = True
+        Me.radBPO.Location = New System.Drawing.Point(6, 177)
+        Me.radBPO.Name = "radBPO"
+        Me.radBPO.Size = New System.Drawing.Size(54, 20)
+        Me.radBPO.TabIndex = 30
+        Me.radBPO.TabStop = True
+        Me.radBPO.Text = "BPO"
+        Me.radBPO.UseVisualStyleBackColor = True
+        '
+        'radBYAP
+        '
+        Me.radBYAP.AutoSize = True
+        Me.radBYAP.Location = New System.Drawing.Point(6, 151)
+        Me.radBYAP.Name = "radBYAP"
+        Me.radBYAP.Size = New System.Drawing.Size(61, 20)
+        Me.radBYAP.TabIndex = 31
+        Me.radBYAP.TabStop = True
+        Me.radBYAP.Text = "BYAP"
+        Me.radBYAP.UseVisualStyleBackColor = True
+        '
+        'radApplicants
+        '
+        Me.radApplicants.AutoSize = True
+        Me.radApplicants.Location = New System.Drawing.Point(6, 125)
+        Me.radApplicants.Name = "radApplicants"
+        Me.radApplicants.Size = New System.Drawing.Size(87, 20)
+        Me.radApplicants.TabIndex = 32
+        Me.radApplicants.TabStop = True
+        Me.radApplicants.Text = "Applicants"
+        Me.radApplicants.UseVisualStyleBackColor = True
+        '
+        'radSeniors
+        '
+        Me.radSeniors.AutoSize = True
+        Me.radSeniors.Location = New System.Drawing.Point(6, 99)
+        Me.radSeniors.Name = "radSeniors"
+        Me.radSeniors.Size = New System.Drawing.Size(70, 20)
+        Me.radSeniors.TabIndex = 33
+        Me.radSeniors.TabStop = True
+        Me.radSeniors.Text = "Seniors"
+        Me.radSeniors.UseVisualStyleBackColor = True
+        '
+        'radOmoluabi
+        '
+        Me.radOmoluabi.AutoSize = True
+        Me.radOmoluabi.Location = New System.Drawing.Point(6, 203)
+        Me.radOmoluabi.Name = "radOmoluabi"
+        Me.radOmoluabi.Size = New System.Drawing.Size(81, 20)
+        Me.radOmoluabi.TabIndex = 35
+        Me.radOmoluabi.TabStop = True
+        Me.radOmoluabi.Text = "Omoluabi"
+        Me.radOmoluabi.UseVisualStyleBackColor = True
         '
         'frmMainPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gainsboro
-        Me.ClientSize = New System.Drawing.Size(926, 483)
-        Me.Controls.Add(Me.chkExecutives)
-        Me.Controls.Add(Me.chkSokoni)
-        Me.Controls.Add(Me.lblCategories)
+        Me.ClientSize = New System.Drawing.Size(983, 483)
+        Me.Controls.Add(Me.grpCategories)
         Me.Controls.Add(Me.chMembers)
         Me.Controls.Add(Me.Copyright)
         Me.Controls.Add(Me.dtagrdContact)
@@ -347,6 +435,8 @@ Partial Class frmMainPage
         CType(Me.picLogo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtagrdContact, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chMembers, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpCategories.ResumeLayout(False)
+        Me.grpCategories.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -374,7 +464,14 @@ Partial Class frmMainPage
     Friend WithEvents pnlDrag As System.Windows.Forms.Panel
     Friend WithEvents Copyright As System.Windows.Forms.Label
     Friend WithEvents chMembers As System.Windows.Forms.DataVisualization.Charting.Chart
-    Friend WithEvents lblCategories As Label
-    Friend WithEvents chkSokoni As CheckBox
-    Friend WithEvents chkExecutives As CheckBox
+    Friend WithEvents clmCategories As DataGridViewTextBoxColumn
+    Friend WithEvents grpCategories As GroupBox
+    Friend WithEvents radAssociate As RadioButton
+    Friend WithEvents radExec As RadioButton
+    Friend WithEvents radSokoni As RadioButton
+    Friend WithEvents radBPO As RadioButton
+    Friend WithEvents radBYAP As RadioButton
+    Friend WithEvents radApplicants As RadioButton
+    Friend WithEvents radSeniors As RadioButton
+    Friend WithEvents radOmoluabi As RadioButton
 End Class
