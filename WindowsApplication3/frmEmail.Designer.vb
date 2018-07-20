@@ -27,7 +27,6 @@ Partial Class frmEmail
         Me.btnClose = New System.Windows.Forms.Button()
         Me.btnSend = New System.Windows.Forms.Button()
         Me.textSubject = New System.Windows.Forms.TextBox()
-        Me.textCc = New System.Windows.Forms.TextBox()
         Me.label4 = New System.Windows.Forms.Label()
         Me.label3 = New System.Windows.Forms.Label()
         Me.btnCancel = New System.Windows.Forms.Button()
@@ -37,6 +36,9 @@ Partial Class frmEmail
         Me.lstFont = New System.Windows.Forms.ComboBox()
         Me.sbStatus = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblTo = New System.Windows.Forms.Label()
+        Me.cboTo = New System.Windows.Forms.ComboBox()
+        Me.cboCc = New System.Windows.Forms.ComboBox()
         Me.Panel2.SuspendLayout()
         Me.sbStatus.SuspendLayout()
         Me.SuspendLayout()
@@ -66,7 +68,7 @@ Partial Class frmEmail
         'btnSend
         '
         Me.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSend.Location = New System.Drawing.Point(489, 321)
+        Me.btnSend.Location = New System.Drawing.Point(484, 368)
         Me.btnSend.Name = "btnSend"
         Me.btnSend.Size = New System.Drawing.Size(115, 35)
         Me.btnSend.TabIndex = 12
@@ -75,22 +77,15 @@ Partial Class frmEmail
         '
         'textSubject
         '
-        Me.textSubject.Location = New System.Drawing.Point(59, 51)
+        Me.textSubject.Location = New System.Drawing.Point(60, 93)
         Me.textSubject.Name = "textSubject"
         Me.textSubject.Size = New System.Drawing.Size(297, 20)
         Me.textSubject.TabIndex = 15
         '
-        'textCc
-        '
-        Me.textCc.Location = New System.Drawing.Point(59, 26)
-        Me.textCc.Name = "textCc"
-        Me.textCc.Size = New System.Drawing.Size(297, 20)
-        Me.textCc.TabIndex = 14
-        '
         'label4
         '
         Me.label4.AutoSize = True
-        Me.label4.Location = New System.Drawing.Point(7, 51)
+        Me.label4.Location = New System.Drawing.Point(8, 93)
         Me.label4.Name = "label4"
         Me.label4.Size = New System.Drawing.Size(43, 13)
         Me.label4.TabIndex = 32
@@ -99,7 +94,7 @@ Partial Class frmEmail
         'label3
         '
         Me.label3.AutoSize = True
-        Me.label3.Location = New System.Drawing.Point(7, 29)
+        Me.label3.Location = New System.Drawing.Point(8, 71)
         Me.label3.Name = "label3"
         Me.label3.Size = New System.Drawing.Size(20, 13)
         Me.label3.TabIndex = 31
@@ -108,7 +103,7 @@ Partial Class frmEmail
         'btnCancel
         '
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCancel.Location = New System.Drawing.Point(614, 321)
+        Me.btnCancel.Location = New System.Drawing.Point(609, 368)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(115, 35)
         Me.btnCancel.TabIndex = 34
@@ -117,14 +112,14 @@ Partial Class frmEmail
         '
         'pgSending
         '
-        Me.pgSending.Location = New System.Drawing.Point(3, 336)
+        Me.pgSending.Location = New System.Drawing.Point(-2, 383)
         Me.pgSending.Name = "pgSending"
         Me.pgSending.Size = New System.Drawing.Size(480, 8)
         Me.pgSending.TabIndex = 38
         '
         'htmlEditor
         '
-        Me.htmlEditor.Location = New System.Drawing.Point(12, 104)
+        Me.htmlEditor.Location = New System.Drawing.Point(10, 151)
         Me.htmlEditor.MinimumSize = New System.Drawing.Size(20, 20)
         Me.htmlEditor.Name = "htmlEditor"
         Me.htmlEditor.Size = New System.Drawing.Size(726, 211)
@@ -133,7 +128,7 @@ Partial Class frmEmail
         'lstSize
         '
         Me.lstSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.lstSize.Location = New System.Drawing.Point(154, 77)
+        Me.lstSize.Location = New System.Drawing.Point(155, 119)
         Me.lstSize.Name = "lstSize"
         Me.lstSize.Size = New System.Drawing.Size(80, 21)
         Me.lstSize.TabIndex = 44
@@ -141,7 +136,7 @@ Partial Class frmEmail
         'lstFont
         '
         Me.lstFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.lstFont.Location = New System.Drawing.Point(12, 77)
+        Me.lstFont.Location = New System.Drawing.Point(13, 119)
         Me.lstFont.Name = "lstFont"
         Me.lstFont.Size = New System.Drawing.Size(136, 21)
         Me.lstFont.TabIndex = 43
@@ -150,7 +145,7 @@ Partial Class frmEmail
         '
         Me.sbStatus.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sbStatus.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatus})
-        Me.sbStatus.Location = New System.Drawing.Point(0, 364)
+        Me.sbStatus.Location = New System.Drawing.Point(0, 406)
         Me.sbStatus.Name = "sbStatus"
         Me.sbStatus.Size = New System.Drawing.Size(736, 22)
         Me.sbStatus.TabIndex = 45
@@ -162,11 +157,41 @@ Partial Class frmEmail
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(0, 17)
         '
+        'lblTo
+        '
+        Me.lblTo.AutoSize = True
+        Me.lblTo.Location = New System.Drawing.Point(8, 48)
+        Me.lblTo.Name = "lblTo"
+        Me.lblTo.Size = New System.Drawing.Size(20, 13)
+        Me.lblTo.TabIndex = 46
+        Me.lblTo.Text = "To"
+        '
+        'cboTo
+        '
+        Me.cboTo.FormattingEnabled = True
+        Me.cboTo.Items.AddRange(New Object() {"Executives", "Associate Staff", "Applicants", "Omoluabi", "Sokoni", "Seniors", "BYAP", "BPO"})
+        Me.cboTo.Location = New System.Drawing.Point(60, 41)
+        Me.cboTo.Name = "cboTo"
+        Me.cboTo.Size = New System.Drawing.Size(121, 21)
+        Me.cboTo.TabIndex = 47
+        '
+        'cboCc
+        '
+        Me.cboCc.FormattingEnabled = True
+        Me.cboCc.Items.AddRange(New Object() {"Executives", "Associate Staff", "Applicants", "Omoluabi", "Sokoni", "Seniors", "BYAP", "BPO"})
+        Me.cboCc.Location = New System.Drawing.Point(60, 68)
+        Me.cboCc.Name = "cboCc"
+        Me.cboCc.Size = New System.Drawing.Size(121, 21)
+        Me.cboCc.TabIndex = 48
+        '
         'frmEmail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(736, 386)
+        Me.ClientSize = New System.Drawing.Size(736, 428)
+        Me.Controls.Add(Me.cboCc)
+        Me.Controls.Add(Me.cboTo)
+        Me.Controls.Add(Me.lblTo)
         Me.Controls.Add(Me.sbStatus)
         Me.Controls.Add(Me.lstSize)
         Me.Controls.Add(Me.lstFont)
@@ -176,7 +201,6 @@ Partial Class frmEmail
         Me.Controls.Add(Me.label4)
         Me.Controls.Add(Me.label3)
         Me.Controls.Add(Me.textSubject)
-        Me.Controls.Add(Me.textCc)
         Me.Controls.Add(Me.btnSend)
         Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -196,7 +220,6 @@ Partial Class frmEmail
     Friend WithEvents btnClose As Button
     Friend WithEvents btnSend As Button
     Friend WithEvents textSubject As TextBox
-    Friend WithEvents textCc As TextBox
     Friend WithEvents label4 As Label
     Friend WithEvents label3 As Label
     Friend WithEvents btnCancel As Button
@@ -206,4 +229,7 @@ Partial Class frmEmail
     Friend WithEvents lstFont As ComboBox
     Friend WithEvents sbStatus As StatusStrip
     Friend WithEvents lblStatus As ToolStripStatusLabel
+    Friend WithEvents lblTo As Label
+    Friend WithEvents cboTo As ComboBox
+    Friend WithEvents cboCc As ComboBox
 End Class

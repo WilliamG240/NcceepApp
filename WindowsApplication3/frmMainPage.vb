@@ -170,10 +170,17 @@ Public Class frmMainPage
     Private Sub txtEmail_KeyDown(sender As Object, e As KeyEventArgs) Handles txtEmail.KeyDown
         If e.KeyCode = Keys.Enter Then
             If Not (txtName.Text.Equals(txtPhone.Text) And txtName.Text.Equals(txtEmail.Text) And txtName.Text.Equals("") = True) Then
-                dtagrdContact.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text)
+                For Each C As Control In grpCategories.Controls
+                    If TypeOf (C) Is RadioButton Then
+                        If DirectCast(C, RadioButton).Checked Then
+                            dtagrdContact.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text, C.Text)
+                        End If
+                    End If
+                Next
                 amount_total_curr_part += 1
             End If
         End If
+
     End Sub
 
     'Clears the entries in the textboxes
@@ -181,20 +188,27 @@ Public Class frmMainPage
         txtEmail.Text = String.Empty
         txtName.Text = String.Empty
         txtPhone.Text = String.Empty
+        radApplicants.Checked = False
+        radAssociate.Checked = False
+        radBPO.Checked = False
+        radBYAP.Checked = False
+        radExec.Checked = False
+        radOmoluabi.Checked = False
+        radSeniors.Checked = False
+        radSokoni.Checked = False
     End Sub
 
     'Adds participants to database
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If Not (txtName.Text.Equals(txtPhone.Text) And txtName.Text.Equals(txtEmail.Text) And txtName.Text.Equals("") = True) Then
-            Dim categories As String
-            For Each chk As Control In Me.Controls
-                If TypeOf chk Is RadioButton AndAlso DirectCast(chk, RadioButton).Checked Then
-                    categories = chk.Text
+            For Each C As Control In grpCategories.Controls
+                If TypeOf (C) Is RadioButton Then
+                    If DirectCast(C, RadioButton).Checked Then
+                        dtagrdContact.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text, C.Text)
+                    End If
                 End If
             Next
-            dtagrdContact.Rows.Add(txtName.Text, txtPhone.Text, txtEmail.Text, categories)
             amount_total_curr_part += 1
-
         End If
     End Sub
 

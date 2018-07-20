@@ -267,12 +267,21 @@ Public Class frmEmail
             'oMail.To = New AddressCollection( "test1@adminsystem.com, test2@adminsystem.com" )
             'oMail.To = New AddressCollection( "Tester1<test@adminsystem.com>, Tester2<test2@adminsystem.com>")
             For Each row As DataGridViewRow In frmMainPage.dtagrdContact.Rows
-                oMail.To.Add(row.Cells(2).Value)
+                If row.Cells(3).Value.Equals(cboTo.SelectedItem) Then
+                    oMail.To.Add(row.Cells(2).Value)
+                ElseIf row.Cells(2).Value.Equals(cboTo.Text) Then
+                    oMail.To.Add(row.Cells(2).Value)
+                End If
             Next
             'You can add more recipient by Add method
             'oMail.To.Add( new MailAddress( "tester", "test@adminsystem.com"))
 
-            oMail.Cc = New AddressCollection(textCc.Text)
+            For Each row As DataGridViewRow In frmMainPage.dtagrdContact.Rows
+                If row.Cells(3).Value.Equals(cboCc.SelectedItem) Then
+                    oMail.Cc.Add(row.Cells(2).Value)
+                End If
+            Next
+
             oMail.Subject = textSubject.Text
 
             Dim basepath As String = Application.ExecutablePath
@@ -353,6 +362,17 @@ Public Class frmEmail
         m_htmlDoc.execCommand("fontname", False, font)
         htmlEditor.Focus()
     End Sub
+
+
+    Private Sub cboTo_TextChanged(sender As Object, e As EventArgs) Handles cboTo.TextChanged
+
+    End Sub
+
+    Private Sub cboTo_TextUpdate(sender As Object, e As EventArgs) Handles cboTo.TextUpdate
+
+
+    End Sub
+
 #End Region
 
 #Region "Form Movement"
