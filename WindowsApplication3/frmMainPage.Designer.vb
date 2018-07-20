@@ -49,6 +49,8 @@ Partial Class frmMainPage
         Me.Copyright = New System.Windows.Forms.Label()
         Me.chMembers = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.lblCategories = New System.Windows.Forms.Label()
+        Me.chkSokoni = New System.Windows.Forms.CheckBox()
+        Me.chkExecutives = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -293,12 +295,34 @@ Partial Class frmMainPage
         Me.lblCategories.TabIndex = 18
         Me.lblCategories.Text = "Categories"
         '
+        'chkSokoni
+        '
+        Me.chkSokoni.AutoSize = True
+        Me.chkSokoni.Location = New System.Drawing.Point(783, 79)
+        Me.chkSokoni.Name = "chkSokoni"
+        Me.chkSokoni.Size = New System.Drawing.Size(59, 17)
+        Me.chkSokoni.TabIndex = 19
+        Me.chkSokoni.Text = "Sokoni"
+        Me.chkSokoni.UseVisualStyleBackColor = True
+        '
+        'chkExecutives
+        '
+        Me.chkExecutives.AutoSize = True
+        Me.chkExecutives.Location = New System.Drawing.Point(783, 103)
+        Me.chkExecutives.Name = "chkExecutives"
+        Me.chkExecutives.Size = New System.Drawing.Size(78, 17)
+        Me.chkExecutives.TabIndex = 20
+        Me.chkExecutives.Text = "Executives"
+        Me.chkExecutives.UseVisualStyleBackColor = True
+        '
         'frmMainPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gainsboro
         Me.ClientSize = New System.Drawing.Size(926, 483)
+        Me.Controls.Add(Me.chkExecutives)
+        Me.Controls.Add(Me.chkSokoni)
         Me.Controls.Add(Me.lblCategories)
         Me.Controls.Add(Me.chMembers)
         Me.Controls.Add(Me.Copyright)
@@ -351,4 +375,6 @@ Partial Class frmMainPage
     Friend WithEvents Copyright As System.Windows.Forms.Label
     Friend WithEvents chMembers As System.Windows.Forms.DataVisualization.Charting.Chart
     Friend WithEvents lblCategories As Label
+    Friend WithEvents chkSokoni As CheckBox
+    Friend WithEvents chkExecutives As CheckBox
 End Class
