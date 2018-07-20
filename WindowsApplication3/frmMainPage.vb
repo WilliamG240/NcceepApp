@@ -191,10 +191,6 @@ Public Class frmMainPage
         End If
     End Sub
 
-    Private Sub txtName_TextChanged(sender As Object, e As EventArgs) Handles txtName.TextChanged
-
-    End Sub
-
     Private Sub dtagrdContact_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles dtagrdContact.RowsRemoved
         amount_total_curr_part -= 1
     End Sub

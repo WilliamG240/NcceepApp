@@ -33,9 +33,9 @@ Partial Class frmMainPage
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.btnClose = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.picLogo = New System.Windows.Forms.PictureBox()
-        Me.btnClose = New System.Windows.Forms.Button()
         Me.lblName = New System.Windows.Forms.Label()
         Me.lblPhone = New System.Windows.Forms.Label()
         Me.lblEmail = New System.Windows.Forms.Label()
@@ -140,25 +140,6 @@ Partial Class frmMainPage
         Me.Panel2.Size = New System.Drawing.Size(759, 18)
         Me.Panel2.TabIndex = 1
         '
-        'Panel3
-        '
-        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Panel3.Controls.Add(Me.picLogo)
-        Me.Panel3.Location = New System.Drawing.Point(193, 1)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(104, 119)
-        Me.Panel3.TabIndex = 2
-        '
-        'picLogo
-        '
-        Me.picLogo.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.picLogo.Image = CType(resources.GetObject("picLogo.Image"), System.Drawing.Image)
-        Me.picLogo.Location = New System.Drawing.Point(6, 6)
-        Me.picLogo.Name = "picLogo"
-        Me.picLogo.Size = New System.Drawing.Size(104, 111)
-        Me.picLogo.TabIndex = 0
-        Me.picLogo.TabStop = False
-        '
         'btnClose
         '
         Me.btnClose.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -170,6 +151,25 @@ Partial Class frmMainPage
         Me.btnClose.TabIndex = 3
         Me.btnClose.Text = "X"
         Me.btnClose.UseVisualStyleBackColor = False
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.picLogo)
+        Me.Panel3.Location = New System.Drawing.Point(193, 1)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(104, 106)
+        Me.Panel3.TabIndex = 2
+        '
+        'picLogo
+        '
+        Me.picLogo.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.picLogo.Image = CType(resources.GetObject("picLogo.Image"), System.Drawing.Image)
+        Me.picLogo.Location = New System.Drawing.Point(0, 2)
+        Me.picLogo.Name = "picLogo"
+        Me.picLogo.Size = New System.Drawing.Size(104, 103)
+        Me.picLogo.TabIndex = 0
+        Me.picLogo.TabStop = False
         '
         'lblName
         '
