@@ -367,15 +367,14 @@ Public Class frmEmail
     End Sub
 
 
-    Private Sub cboTo_TextChanged(sender As Object, e As EventArgs) Handles cboTo.TextChanged
-
-    End Sub
 
     Private Sub cboTo_TextUpdate(sender As Object, e As EventArgs) Handles cboTo.TextUpdate
+        'Updates ComboBox such that when name is inputted searches for an email corresponding to said name
         If Not cboTo.Text.Equals("") Then
             Dim index As Integer = 0
             Dim item_array(30)
             If Not cboTo.Items.Contains(cboTo.Text) Then
+                'removing all the items in the comboBox
                 For Each item In cboTo.Items
                     item_array(index) = item
                     index += 1
@@ -385,7 +384,7 @@ Public Class frmEmail
                     cboTo.Items.Remove(item_array(i))
                 Next i
 
-
+                'Adding the new items into the ComboBox referring to the email corresponding to the give text
                 For Each row As DataGridViewRow In frmMainPage.dtagrdContact.Rows
                     If row.Cells(0).Value.ToString.Contains(cboTo.Text) Then
                         cboTo.Items.Add(row.Cells(2).Value)
@@ -393,6 +392,7 @@ Public Class frmEmail
                 Next
             End If
         Else
+            'removing all the current items
             Dim index As Integer = 0
             Dim item_array(30)
             For Each item In cboTo.Items
@@ -404,6 +404,7 @@ Public Class frmEmail
                 cboTo.Items.Remove(item_array(i))
             Next i
 
+            'Adding back all the default items
             cboTo.Items.Add("Executives")
             cboTo.Items.Add("Associate Staff")
             cboTo.Items.Add("Applicants")
@@ -452,6 +453,56 @@ Public Class frmEmail
 
     Private Sub _SetStatusCallBack(ByVal v As String)
         lblStatus.Text = v
+    End Sub
+
+    Private Sub cboCc_TextUpdate(sender As Object, e As EventArgs) Handles cboCc.TextUpdate
+        'Updates ComboBox such that when name is inputted searches for an email corresponding to said name
+        If Not cboCc.Text.Equals("") Then
+            Dim index As Integer = 0
+            Dim item_array(30)
+            If Not cboCc.Items.Contains(cboCc.Text) Then
+                'removing all the items in the comboBox
+                For Each item In cboCc.Items
+                    item_array(index) = item
+                    index += 1
+                Next
+
+                For i = 0 To 30
+                    cboCc.Items.Remove(item_array(i))
+                Next i
+
+                'Adding the new items into the ComboBox referring to the email corresponding to the give text
+                For Each row As DataGridViewRow In frmMainPage.dtagrdContact.Rows
+                    If row.Cells(0).Value.ToString.Contains(cboCc.Text) Then
+                        cboCc.Items.Add(row.Cells(2).Value)
+                    End If
+                Next
+            End If
+        Else
+            'removing all the current items
+            Dim index As Integer = 0
+            Dim item_array(30)
+            For Each item In cboCc.Items
+                item_array(index) = item
+                index += 1
+            Next
+
+            For i = 0 To 30
+                cboCc.Items.Remove(item_array(i))
+            Next i
+
+            'Adding back all the default items
+            cboCc.Items.Add("Executives")
+            cboCc.Items.Add("Associate Staff")
+            cboCc.Items.Add("Applicants")
+            cboCc.Items.Add("Omoluabi")
+            cboCc.Items.Add("Sokoni")
+            cboCc.Items.Add("Seniors")
+            cboCc.Items.Add("BYAP")
+            cboCc.Items.Add("BPO")
+            cboCc.Items.Add("All")
+
+        End If
     End Sub
 
     Private Sub _SetProgressCallBack(ByVal sent As Integer, ByVal total As Integer)
