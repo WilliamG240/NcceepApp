@@ -1,6 +1,5 @@
 ﻿Imports EASendMail
-Imports System.Threading.Tasks
-Imports Google.Apis.Gmail
+
 Public Class frmEmail
 
 #Region "Public/Private Variables"
@@ -226,6 +225,11 @@ Public Class frmEmail
         m_htmlDoc.designMode = "on"
         InitFonts()
     End Sub
+
+
+#End Region
+
+#Region "Form Component Events"
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo)

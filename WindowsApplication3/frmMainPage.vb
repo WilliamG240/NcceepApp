@@ -15,13 +15,20 @@ Public Class frmMainPage
 #Region "Form Events"
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         username = Environment.UserName
-        If System.IO.File.Exists("C:\Users\" + username + "\Dropbox\Participants_list.csv") = True Then
-            For Each line As String In System.IO.File.ReadAllLines("C:\Users\" + username + "\Dropbox\Participants_list.csv")
-                If Not line.StartsWith("2018") And line.Contains("Name") = False Then
-                    dtagrdContact.Rows.Add(line.Split(","))
-                End If
-            Next
+        If System.IO.File.Exists("C:\Users\" + username + "\Dropbox\Usage.txt") = False Then
+            MessageBox.Show("Program is currently being used by another user")
+            Me.Close()
+        Else
+            My.Computer.FileSystem.DeleteFile("C:\Users\" + username + "\Dropbox\Usage.txt")
+            If System.IO.File.Exists("C:\Users\" + username + "\Dropbox\Participants_list.csv") = True Then
+                For Each line As String In System.IO.File.ReadAllLines("C:\Users\" + username + "\Dropbox\Participants_list.csv")
+                    If Not line.StartsWith("2018") And line.Contains("Name") = False Then
+                        dtagrdContact.Rows.Add(line.Split(","))
+                    End If
+                Next
+            End If
         End If
+
     End Sub
 
     Private Sub Form3_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
@@ -68,44 +75,47 @@ Public Class frmMainPage
     End Sub
 
     Private Sub Form3_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        'Build the CSV file data as a Comma separated string.
-        Dim csv As String = String.Empty
-        Dim csvP As String = String.Empty
+        If Not date1 = Nothing Then
+            'Build the CSV file data as a Comma separated string.
+            Dim csv As String = String.Empty
+            Dim csvP As String = String.Empty
 
-        'Add the Header row for CSV file.
-        For Each column As DataGridViewColumn In dtagrdContact.Columns
-            csv += column.HeaderText & ","c
-        Next
-
-        'Add new line.
-        csv += vbCr & vbLf
-        'Adding the Rows
-        For Each row As DataGridViewRow In dtagrdContact.Rows
-            For Each cell As DataGridViewCell In row.Cells
-                'Add the Data rows.
-                csv += cell.Value.ToString().Replace(",", ";") & ","c
+            'Add the Header row for CSV file.
+            For Each column As DataGridViewColumn In dtagrdContact.Columns
+                csv += column.HeaderText & ","c
             Next
 
             'Add new line.
             csv += vbCr & vbLf
-        Next
-        csv += date1
-        'Exporting to Excel
-        Dim folderPath As String = "C:\Users\" + username + "\Dropbox\"
-        File.WriteAllText(folderPath & "Participants_list.csv", csv)
+            'Adding the Rows
+            For Each row As DataGridViewRow In dtagrdContact.Rows
+                For Each cell As DataGridViewCell In row.Cells
+                    'Add the Data rows.
+                    csv += cell.Value.ToString().Replace(",", ";") & ","c
+                Next
 
-        'Exporting chart data of participants to csv
-        If System.IO.File.Exists("C:\Users\" + username + "\Dropbox\Participants_Date.csv") = True Then
-            For Each line As String In System.IO.File.ReadAllLines("C:\Users\" + username + "\Dropbox\Participants_Date.csv")
-                If Not line.Contains(date1) Then
-                    csvP += line + vbCr & vbLf
-                End If
+                'Add new line.
+                csv += vbCr & vbLf
             Next
-            My.Computer.FileSystem.DeleteFile("C:\Users\" + username + "\Dropbox\Participants_Date.csv")
+            csv += date1
+            'Exporting to Excel
+            Dim folderPath As String = "C:\Users\" + username + "\Dropbox\"
+            File.WriteAllText(folderPath & "Participants_list.csv", csv)
+
+            'Exporting chart data of participants to csv
+            If System.IO.File.Exists("C:\Users\" + username + "\Dropbox\Participants_Date.csv") = True Then
+                For Each line As String In System.IO.File.ReadAllLines("C:\Users\" + username + "\Dropbox\Participants_Date.csv")
+                    If Not line.Contains(date1) Then
+                        csvP += line + vbCr & vbLf
+                    End If
+                Next
+                My.Computer.FileSystem.DeleteFile("C:\Users\" + username + "\Dropbox\Participants_Date.csv")
+            End If
+
+            csvP += date1 + "," + amount_total_curr_part.ToString()
+            File.WriteAllText(folderPath & "Participants_Date.csv", csvP)
         End If
 
-        csvP += date1 + "," + amount_total_curr_part.ToString()
-        File.WriteAllText(folderPath & "Participants_Date.csv", csvP)
     End Sub
 #End Region
 
@@ -218,6 +228,7 @@ Public Class frmMainPage
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        File.WriteAllText("C:\Users\" + username + "\Dropbox\" & "Usage.txt", "")
         Me.Close()
     End Sub
 
