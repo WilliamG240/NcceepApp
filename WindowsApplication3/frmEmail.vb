@@ -2,14 +2,13 @@
 Imports System.Threading.Tasks
 Imports Google.Apis.Gmail
 Public Class frmEmail
-    Inherits System.Windows.Forms.Form
+
 #Region "Public/Private Variables"
     Private m_bcancel As Boolean = False
     Private m_eventtick As Long = 0
     Private m_htmlDoc As mshtml.IHTMLDocument2
 
 #End Region
-
 
 #Region "Initialize Fonts List"
     Protected Sub InitFonts()
@@ -174,7 +173,7 @@ Public Class frmEmail
 
         lstFont.SelectedIndex = 0
         lstSize.Items.Add("Font Size ... ")
-        For i = 1 To 7
+        For i = 1 To 9
             lstSize.Items.Add(i)
         Next
         lstSize.SelectedIndex = 0
@@ -219,6 +218,8 @@ Public Class frmEmail
     End Sub
 
 #End Region
+
+#Region "Form Events"
     Private Sub frmEmail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         htmlEditor.Navigate("about:blank")
         m_htmlDoc = CType(htmlEditor.Document.DomDocument, mshtml.IHTMLDocument2)
@@ -226,7 +227,6 @@ Public Class frmEmail
         InitFonts()
     End Sub
 
-#Region "Form Component Events"
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo)
         If result = DialogResult.No Then
@@ -367,9 +367,9 @@ Public Class frmEmail
     End Sub
 
 
-
+    'Updates ComboBox such that when name is inputted searches for an email corresponding to said name
     Private Sub cboTo_TextUpdate(sender As Object, e As EventArgs) Handles cboTo.TextUpdate
-        'Updates ComboBox such that when name is inputted searches for an email corresponding to said name
+
         If Not cboTo.Text.Equals("") Then
             Dim index As Integer = 0
             Dim item_array(30)
@@ -417,42 +417,6 @@ Public Class frmEmail
 
         End If
 
-    End Sub
-
-#End Region
-
-#Region "Form Movement"
-    Public IsDragging As Boolean = False, IsClick As Boolean = False
-    Public StartPoint, FirstPoint, LastPoint As Point
-    Private Sub Panel2_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseDown
-        StartPoint = Me.PointToScreen(New Point(e.X, e.Y))
-        FirstPoint = StartPoint
-        IsDragging = True
-    End Sub
-
-    Private Sub Panel2_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseMove
-        If IsDragging Then
-            Dim EndPoint As Point = Me.PointToScreen(New Point(e.X, e.Y))
-            IsClick = False
-            Me.Left += (EndPoint.X - StartPoint.X)
-            Me.Top += (EndPoint.Y - StartPoint.Y)
-            StartPoint = EndPoint
-            LastPoint = EndPoint
-        End If
-    End Sub
-
-    Private Sub Panel2_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseUp
-        IsDragging = False
-        If LastPoint = StartPoint Then IsClick = True Else IsClick = False
-    End Sub
-#End Region
-
-#Region "Cross Thread Access Control"
-    Private Delegate Sub SetStatusDelegate(ByVal v As String)
-    Private Delegate Sub SetProgressDelegate(ByVal sent As Integer, ByVal total As Integer)
-
-    Private Sub _SetStatusCallBack(ByVal v As String)
-        lblStatus.Text = v
     End Sub
 
     Private Sub cboCc_TextUpdate(sender As Object, e As EventArgs) Handles cboCc.TextUpdate
@@ -503,6 +467,41 @@ Public Class frmEmail
             cboCc.Items.Add("All")
 
         End If
+    End Sub
+#End Region
+
+#Region "Form Movement"
+    Public IsDragging As Boolean = False, IsClick As Boolean = False
+    Public StartPoint, FirstPoint, LastPoint As Point
+    Private Sub Panel2_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseDown
+        StartPoint = Me.PointToScreen(New Point(e.X, e.Y))
+        FirstPoint = StartPoint
+        IsDragging = True
+    End Sub
+
+    Private Sub Panel2_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseMove
+        If IsDragging Then
+            Dim EndPoint As Point = Me.PointToScreen(New Point(e.X, e.Y))
+            IsClick = False
+            Me.Left += (EndPoint.X - StartPoint.X)
+            Me.Top += (EndPoint.Y - StartPoint.Y)
+            StartPoint = EndPoint
+            LastPoint = EndPoint
+        End If
+    End Sub
+
+    Private Sub Panel2_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseUp
+        IsDragging = False
+        If LastPoint = StartPoint Then IsClick = True Else IsClick = False
+    End Sub
+#End Region
+
+#Region "Cross Thread Access Control"
+    Private Delegate Sub SetStatusDelegate(ByVal v As String)
+    Private Delegate Sub SetProgressDelegate(ByVal sent As Integer, ByVal total As Integer)
+
+    Private Sub _SetStatusCallBack(ByVal v As String)
+        lblStatus.Text = v
     End Sub
 
     Private Sub _SetProgressCallBack(ByVal sent As Integer, ByVal total As Integer)
