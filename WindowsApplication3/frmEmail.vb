@@ -390,7 +390,7 @@ Public Class frmEmail
 
                 'Adding the new items into the ComboBox referring to the email corresponding to the give text
                 For Each row As DataGridViewRow In frmMainPage.dtagrdContact.Rows
-                    If row.Cells(0).Value.ToString.Contains(cboTo.Text) Then
+                    If row.Cells(0).Value.ToString.ToLower.Contains(cboTo.Text.ToLower) Then
                         cboTo.Items.Add(row.Cells(2).Value)
                     End If
                 Next
@@ -441,7 +441,7 @@ Public Class frmEmail
 
                 'Adding the new items into the ComboBox referring to the email corresponding to the give text
                 For Each row As DataGridViewRow In frmMainPage.dtagrdContact.Rows
-                    If row.Cells(0).Value.ToString.Contains(cboCc.Text) Then
+                    If row.Cells(0).Value.ToString.ToLower.Contains(cboCc.Text.ToLower) Then
                         cboCc.Items.Add(row.Cells(2).Value)
                     End If
                 Next
